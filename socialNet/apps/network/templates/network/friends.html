@@ -1,0 +1,26 @@
+{% extends 'network/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body%}
+<h3 class="friends-subtitle">Партнёры</h3>
+<div class="container d-flex justify-content-center">
+    <ul class="list-group col-5">
+        {% for person in users %}
+            {% if person != user %}
+                <li class="list-group-item mb-1">
+                    <h5 class="list-group-item-heading">
+                        <a href="{% url 'person' person.id %}" class="card-link friend">{{ person.first_name }} {{ person.last_name }}</a>
+                    </h5>
+                    <div>
+                        <h4>
+                            <a href="{% url 'create_dialog' person.id %}" class="friend"><i class="fas fa-comment"></i></a>
+                        </h4>
+                    </div>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

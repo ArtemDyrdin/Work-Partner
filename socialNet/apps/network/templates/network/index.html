@@ -1,0 +1,31 @@
+{% extends 'network/base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+<div class="main-page">
+    <div class="main-page-block">
+        <div class="welcome">
+            <p class="welcome-up"><span class="welcome-to">WELCOME TO</span><br>WORK PARTNER</p>
+        </div>
+        <div class="abilities">
+            <p>Хочешь найти партнера по работе, но поблизости нет подходящих людей?
+                Тогда тебе сюда! 
+            </p>
+        </div>
+        <br>
+        {% if not user.is_authenticated %}
+            <div class="row justify-content-between button">
+                <div class="col-4">
+                    <a href="{% url 'signin' %}" class="btn btn-outline-light btn-lg">Войти</a>
+                </div>
+                <div class="col-8">
+                    <a href="{% url 'signup' %}" class="btn btn-outline-light btn-lg">Зарегистрироваться</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

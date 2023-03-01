@@ -1,0 +1,40 @@
+{% extends 'network/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body%}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="container font-weight-bold">
+        <div class="mb-1">
+            <p>Возраст</p>
+            {{ form.age}}
+        </div>
+        <div class="mb-1">
+            <p>Город</p>
+            {{ form.city }}
+        </div>
+        <div class="mb-1">
+            <p>Сфера деятельности</p>
+            {{ form.spec}}
+        </div>
+        <div class="mb-1">
+            <p>Чем занимаетесь? Кого ищите?</p>
+            {{ form.descript }}
+        </div>
+        {% if form.errors %}
+            <p>Ошибка</p>
+        {% endif %}
+    </div>
+    <br>
+    <div class="fixed-bottom" style="background-color: #3AAFA9;">
+        <br>
+        <button type="submit" class="btn btn-outline-light btn-lg">Сохранить</button>
+        <p></p>
+    </div>
+
+</form>
+
+
+{% endblock %}

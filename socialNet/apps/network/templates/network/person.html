@@ -1,0 +1,61 @@
+{% extends 'network/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body%}
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3" style="border-radius: .5rem;">
+        <div class="row g-0">
+            <div class="col-md-4 user-info-block text-center text-white"
+            style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img src="..\{{ person.profile.avatar }}"
+                    alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                <h5>{{ person.first_name }} {{ person.last_name }}</h5>
+                {% if person.profile.spec == 1 %}
+                    <p>Программирование</p>
+                {% elif person.profile.spec == 2 %}
+                    <p>Музыка</p>
+                {% elif person.profile.spec == 3 %}
+                    <p>Блоги и видео</p>
+                {% endif %}
+                <p></p>
+            </div>
+            <div class="col-md-8">
+            <div class="card-body p-4">
+                <h6>Информация</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                <div class="col-6 mb-3">
+                    <h6>Возраст</h6>
+                    <p class="text-muted">{{ person.profile.age }}</p>
+                </div>
+                <div class="col-6 mb-3">
+                    <h6>Город</h6>
+                    <p class="text-muted">{{ person.profile.city }}</p>
+                </div>
+                </div>
+                <h6>Описание</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                <p class="text-muted">{{ person.profile.descript }}</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="row justify-content-between button">
+            <div class="col-6">
+                <a href="" class="btn btn-outline-light btn-lg"><i class="fas fa-bookmark"></i> Сохранить</a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'create_dialog' person.id %}" class="btn btn-outline-light btn-lg"><i class="fas fa-comment"></i> Сообщение</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+{% endblock %}

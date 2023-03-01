@@ -1,0 +1,62 @@
+{% extends 'network/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body%}
+
+{% if not chat %}
+    <div>
+        <h3>Невозможно начать беседу. Не найден пользователь или вы не имеете доступа к данной беседе.</h3>
+    </div>
+{% else %}
+    {% load tz %}
+    {% if chat %}
+
+    <div class="container p-2">
+		<div class="card">
+			<div class="row g-0">
+				<div class="col-12 col-lg-7 col-xl-12">
+					<div class="py-2 px-4 border-bottom d-none d-lg-block">
+						<div class="d-flex align-items-center py-1">
+							<div class="flex-grow-1 pl-3">
+                                <strong>{{ companion.first_name }} {{ companion.last_name }}</strong>
+                            </div>
+						</div>
+					</div>
+
+                    <div class="position-relative">
+                        <div class="chat-messages p-4">
+                            {% for message in chat.message_set.all %}
+                                <div class="{% if message.author == request.user %}chat-message-right mb-4{% else %}chat-message-left pb-4{% endif %}">
+                                    <div>
+                                        <img src="..\{{ message.author.profile.avatar }}" class="rounded-circle mr-1" width="40" height="40">
+                                        <div class="text-muted small text-nowrap mt-2">{{ message.pub_date|utc }}</div>
+                                    </div>
+                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 message">
+                                        <div class="font-weight-bold mb-1">{% if message.author == request.user %}Вы{% else %}{{ message.author.first_name }}{% endif %}</div>
+                                        {{ message.message|safe }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        <form method="post">
+                            <div class="flex-grow-0 py-3 px-4 border-top">
+                                <div class="input-group">
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                        {{ field }}
+                                    {% endfor %}
+                                    <button type="submit" class="btn btn-primary">Отправить</button>
+                                </div>
+                            </div>
+                        </form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    {% endif %}
+{% endif %}
+
+{% endblock %}

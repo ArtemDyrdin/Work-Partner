@@ -1,0 +1,39 @@
+{% extends 'network/base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+<form method="POST">
+  {% csrf_token %}
+  <br>
+  <h1 class="mb-3">Регистрация</h1>
+  <div class="container font-weight-bold">
+    <div class="mb-1">
+      <p>Имя</p>
+      {{ form.first_name}}
+    </div>
+    <div class="mb-1">
+      <p>Фамилия</p>
+      {{ form.last_name }}
+    </div>
+    <div class="mb-1">
+      <p>Имя пользователя</p>
+      {{ form.username}}
+    </div>
+    <div class="mb-1">
+      <p>Email</p>
+      {{ form.email }}
+    </div>
+    <div class="mb-1">
+      <p>Пароль</p>
+      {{ form.password}}
+    </div>
+  </div>
+  <br>
+
+  <button type="submit" class="btn btn-outline-light btn-lg">Зарегистрироваться</button>
+
+</form>
+
+{% endblock %}
