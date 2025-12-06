@@ -8,7 +8,7 @@ from django.views import View
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from django.db.models import Count
 
@@ -196,3 +196,7 @@ class LogInView(LoginView):
     template_name = 'network/signin.html'
     form_class = AuthUserForm
     success_url = '/account'
+
+def loguot_view(request):
+    logout(request)
+    return redirect('main')

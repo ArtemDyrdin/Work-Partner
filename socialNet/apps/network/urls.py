@@ -1,5 +1,5 @@
-from django.contrib.auth import logout
-from socialNet.settings import LOGOUT_REDIRECT_URL
+# from django.contrib.auth import logout
+# from socialNet.settings import LOGOUT_REDIRECT_URL
 from django.urls import path
 from . import views
 from django.contrib.auth import views as authViews
@@ -19,5 +19,5 @@ urlpatterns = [
     path('dialogs', views.DialogsView.as_view(), name='dialogs'),
     path('signup', views.register, name='signup'),
     path('signin', views.LogInView.as_view(), name='signin'),
-    path('logout', authViews.LogoutView.as_view(), name='logout'),
+    path('logout/', views.loguot_view, name='logout'),
 ]
